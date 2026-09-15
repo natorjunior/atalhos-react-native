@@ -351,4 +351,85 @@ const styles = StyleSheet.create({
   },
 });`
   },
+  {
+    id: "notes-app-base",
+    title: "App de notas (base)",
+    category: "App de notas",
+    tags: ["notas", "notes", "app", "usestate", "flatlist", "exemplo"],
+    description: "Exemplo inicial: cria e lista notas usando apenas estado local.",
+    lang: "jsx",
+    snack: "",
+    code: `import { useState } from 'react';
+import { Button, FlatList, Text, TextInput, View } from 'react-native';
+
+export default function NotesApp() {
+  const [title, setTitle] = useState('');
+  const [notes, setNotes] = useState([]);
+
+  function addNote() {
+    if (!title.trim()) return;
+    setNotes((current) => [...current, { id: Date.now().toString(), title }]);
+    setTitle('');
+  }
+
+  return (
+    <View style={{ flex: 1, padding: 16 }}>
+      <TextInput placeholder="Nova nota" value={title} onChangeText={setTitle} />
+      <Button title="Adicionar" onPress={addNote} />
+      <FlatList data={notes} keyExtractor={(note) => note.id}
+        renderItem={({ item }) => <Text>{item.title}</Text>} />
+    </View>
+  );
+}`
+  },
+  {
+    id: "notes-app-complete",
+    title: "App de notas (completo)",
+    category: "App de notas",
+    tags: ["notas", "notes", "app", "asyncstorage", "busca", "filtros", "exemplo"],
+    description: "Versão completa do mesmo app, com busca e persistência local usando AsyncStorage.",
+    lang: "jsx",
+    snack: "",
+    code: `import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useEffect, useMemo, useState } from 'react';
+import { FlatList, Pressable, Text, TextInput, View } from 'react-native';
+
+const STORAGE_KEY = '@notes-app/notes';
+
+export default function NotesApp() {
+  const [notes, setNotes] = useState([]);
+  const [query, setQuery] = useState('');
+  const [draft, setDraft] = useState('');
+
+  useEffect(() => {
+    AsyncStorage.getItem(STORAGE_KEY).then((value) => {
+      if (value) setNotes(JSON.parse(value));
+    });
+  }, []);
+
+  useEffect(() => {
+    AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(notes));
+  }, [notes]);
+
+  const filteredNotes = useMemo(() => notes.filter((note) =>
+    note.title.toLowerCase().includes(query.toLowerCase())
+  ), [notes, query]);
+
+  function addNote() {
+    if (!draft.trim()) return;
+    setNotes((current) => [{ id: Date.now().toString(), title: draft.trim() }, ...current]);
+    setDraft('');
+  }
+
+  return (
+    <View style={{ flex: 1, padding: 16 }}>
+      <TextInput placeholder="Buscar notas" value={query} onChangeText={setQuery} />
+      <TextInput placeholder="Escreva uma nota" value={draft} onChangeText={setDraft} />
+      <Pressable onPress={addNote}><Text>Salvar nota</Text></Pressable>
+      <FlatList data={filteredNotes} keyExtractor={(note) => note.id}
+        renderItem={({ item }) => <Text>{item.title}</Text>} />
+    </View>
+  );
+}`
+  },
 ];

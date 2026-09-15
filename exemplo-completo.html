@@ -3,50 +3,54 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Atalhos React Native</title>
+<title>Exemplo completo | RN Atalhos</title>
 <link rel="stylesheet" href="style.css">
 </head>
-<body data-view="base">
+<body data-view="complete">
   <aside class="sidebar">
     <div class="brand">
-      <span class="brand-logo">⚛</span>
+      <span class="brand-logo">&#9883;</span>
       <div>
         <span class="brand-name">RN Atalhos</span>
         <span class="brand-caption">React Native, sem ruído</span>
       </div>
     </div>
-
     <div class="search-wrap">
       <input id="search-input" type="text" placeholder="Buscar..." autocomplete="off">
       <kbd class="search-kbd">/</kbd>
     </div>
-
     <nav class="areas" aria-label="Áreas de exemplos">
       <span class="nav-label">Explorar</span>
-      <a class="area-link active" href="index.html">Exemplos base</a>
-      <a class="area-link" href="exemplo-completo.html">Exemplo completo</a>
+      <a class="area-link" href="index.html">Exemplos base</a>
+      <a class="area-link active" href="exemplo-completo.html">Exemplo completo</a>
     </nav>
-
-    <nav class="categories" id="categories">
-      <!-- gerado via JS -->
-    </nav>
+    <nav class="categories" id="categories"></nav>
   </aside>
 
   <main class="content">
     <header class="page-intro">
-      <span class="eyebrow">Biblioteca de construção</span>
+      <span class="eyebrow">Projeto guiado</span>
       <h1 class="page-title" id="page-title"></h1>
       <p class="page-description" id="page-description"></p>
-      <div class="intro-meta"><span>React Native</span><span class="meta-dot"></span><span>Snippets prontos para testar</span></div>
+      <div class="intro-meta"><span>React Native</span><span class="meta-dot"></span><span>Do estado local ao armazenamento</span></div>
     </header>
-    <div class="list" id="cards-list">
-      <!-- gerado via JS -->
-    </div>
+    <section class="complete-preview" aria-label="Resumo do app de notas">
+      <div class="preview-copy">
+        <span class="complete-preview-label">Projeto em foco</span>
+        <h2>Notas que continuam com você</h2>
+        <p>Uma evolução clara do exemplo base: o app salva, filtra e recupera as notas sem perder a simplicidade do primeiro passo.</p>
+      </div>
+      <div class="preview-features">
+        <span><strong>01</strong> estado local</span>
+        <span><strong>02</strong> busca instantânea</span>
+        <span><strong>03</strong> persistência</span>
+      </div>
+    </section>
+    <div class="list" id="cards-list"></div>
     <p class="empty-state" id="empty-state" hidden>Nada encontrado.</p>
   </main>
 
-  <div class="toast" id="toast">Copiado ✅</div>
-
+  <div class="toast" id="toast">Copiado</div>
   <script src="src/data/snippets-data.js"></script>
   <script src="src/repositories/snippets-repository.js"></script>
   <script src="src/services/snippets-service.js"></script>

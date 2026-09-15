@@ -9,10 +9,27 @@
   const listEl = document.getElementById("cards-list");
   const emptyStateEl = document.getElementById("empty-state");
   const toastEl = document.getElementById("toast");
+  const pageTitleEl = document.getElementById("page-title");
+  const pageDescriptionEl = document.getElementById("page-description");
 
   let activeCategory = "Todos";
   let query = "";
   let toastTimeout;
+
+  function renderPageIntro() {
+    if (document.body.dataset.view === "complete") {
+      pageTitleEl.textContent = "App de notas completo";
+      pageDescriptionEl.textContent = "O mesmo exemplo base, evoluído com busca, filtros e persistência local.";
+      return;
+    }
+
+    pageTitleEl.textContent = "Exemplos base";
+    pageDescriptionEl.textContent = "Peças pequenas para montar um app de notas em React Native.";
+  }
+
+  function getInitialCategory() {
+    return document.body.dataset.view === "complete" ? "App de notas" : "Todos";
+  }
 
   function renderCategories() {
     const categories = snippetsService.getCategories();
@@ -46,7 +63,11 @@
         return `
         <article class="item">
           <div class="item-header">
-            <h2 class="item-title">${s.title}</h2>
+            <div>
+              <span class="item-number">${String(filtered.indexOf(s) + 1).padStart(2, "0")}</span>
+              <h2 class="item-title">${s.title}</h2>
+              <p class="item-description">${s.description}</p>
+            </div>
             <span class="item-category">${s.category}</span>
           </div>
           <div class="code-window">
@@ -163,6 +184,8 @@
     }
   });
 
+  activeCategory = getInitialCategory();
+  renderPageIntro();
   renderCategories();
   renderCards();
 })();
