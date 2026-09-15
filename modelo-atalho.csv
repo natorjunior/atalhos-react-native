@@ -1,0 +1,2 @@
+id,title,category,tags,description,lang,snack,code
+exemplo-id,"Título do atalho","Categoria","tag1;tag2;tag3","Descrição curta do que o atalho faz","jsx ou bash","@usuario/nome-do-snack (opcional)","código aqui, use \n para quebra de linha"

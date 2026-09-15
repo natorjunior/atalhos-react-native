@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Atalhos React Native</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="brand">
+      <span class="brand-logo">⚛</span>
+      <span class="brand-name">RN Atalhos</span>
+    </div>
+
+    <div class="search-wrap">
+      <input id="search-input" type="text" placeholder="Buscar..." autocomplete="off">
+      <kbd class="search-kbd">/</kbd>
+    </div>
+
+    <nav class="categories" id="categories">
+      <!-- gerado via JS -->
+    </nav>
+  </aside>
+
+  <main class="content">
+    <div class="list" id="cards-list">
+      <!-- gerado via JS -->
+    </div>
+    <p class="empty-state" id="empty-state" hidden>Nada encontrado.</p>
+  </main>
+
+  <div class="toast" id="toast">Copiado ✅</div>
+
+  <script src="src/data/snippets-data.js"></script>
+  <script src="src/repositories/snippets-repository.js"></script>
+  <script src="src/services/snippets-service.js"></script>
+  <script src="src/services/presentation-service.js"></script>
+  <script src="src/ui/app.js"></script>
+</body>
+</html>
